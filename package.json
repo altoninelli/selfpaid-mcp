@@ -1,0 +1,39 @@
+{
+  "name": "selfpaid-mcp",
+  "version": "2.1.2",
+  "description": "Model Context Protocol (MCP) server for SelfPaid - Autonomous Zero-Cost DeFi Payments on Base Mainnet",
+  "main": "bin/mcp-server.js",
+  "bin": {
+    "selfpaid-mcp": "./bin/mcp-server.js"
+  },
+  "scripts": {
+    "start": "node bin/mcp-server.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "cursor",
+    "windsurf",
+    "defi",
+    "payments",
+    "base",
+    "usdc",
+    "aave",
+    "morpho",
+    "ai-agents"
+  ],
+  "author": "altoninelli",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/altoninelli/selfpaid-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/altoninelli/selfpaid-mcp/issues"
+  },
+  "homepage": "https://github.com/altoninelli/selfpaid-mcp#readme"
+}

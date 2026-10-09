@@ -1,0 +1,20 @@
+startCommand:
+  type: stdio
+  command: node
+  args:
+    - bin/mcp-server.js
+  commandFunction: |-
+    (config) => ({
+      command: 'node',
+      args: ['bin/mcp-server.js'],
+      env: {
+        SELFPAID_API_URL: config?.apiUrl || 'https://selfpaid.cryptofolio.it'
+      }
+    })
+configSchema:
+  type: object
+  properties:
+    apiUrl:
+      type: string
+      description: "SelfPaid hosted API endpoint"
+      default: "https://selfpaid.cryptofolio.it"
