@@ -2,6 +2,7 @@
   "name": "selfpaid-mcp",
   "version": "2.1.2",
   "description": "Model Context Protocol (MCP) server for SelfPaid - Autonomous Zero-Cost DeFi Payments on Base Mainnet",
+  "icon": "https://selfpaid.cryptofolio.it/icon.png",
   "main": "bin/mcp-server.js",
   "bin": {
     "selfpaid-mcp": "./bin/mcp-server.js"

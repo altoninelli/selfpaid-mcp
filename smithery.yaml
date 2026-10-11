@@ -1,3 +1,4 @@
+icon: https://selfpaid.cryptofolio.it/icon.png
 startCommand:
   type: stdio
   command: node

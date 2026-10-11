@@ -29,6 +29,60 @@ const TOOLS = [
           description: 'Force a live on-chain refresh rather than using cached rates (defaults to false).'
         }
       }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['aave', 'morpho', 'best', 'bestApy'],
+      properties: {
+        aave: {
+          type: 'object',
+          description: 'Aave V3 supply yield on Base Mainnet',
+          required: ['apy', 'apyFormatted', 'poolAddress'],
+          properties: {
+            apy: { type: 'number', description: 'Annual percentage yield as decimal (e.g. 0.0405 for 4.05%)' },
+            apyFormatted: { type: 'string', description: 'Human-readable APY percentage (e.g. "4.05%")' },
+            poolAddress: { type: 'string', description: 'Aave V3 Pool contract address on Base' }
+          }
+        },
+        morpho: {
+          type: 'object',
+          description: 'Morpho Vault supply yield on Base Mainnet',
+          required: ['apy', 'apyFormatted', 'marketId'],
+          properties: {
+            apy: { type: 'number', description: 'Net annual percentage yield as decimal (e.g. 0.0407 for 4.07%)' },
+            apyFormatted: { type: 'string', description: 'Human-readable APY percentage (e.g. "4.07%")' },
+            marketId: { type: 'string', description: 'Morpho Vault address or market identifier' }
+          }
+        },
+        best: {
+          type: 'string',
+          enum: ['aave', 'morpho'],
+          description: 'Protocol with the highest yield'
+        },
+        bestApy: {
+          type: 'number',
+          description: 'Highest supply APY currently available'
+        },
+        lastUpdated: {
+          type: 'string',
+          description: 'ISO 8601 timestamp of last oracle update'
+        },
+        isCached: {
+          type: 'boolean',
+          description: 'Whether rates were served from in-memory cache'
+        }
+      }
+    },
+    annotations: {
+      readOnly: true,
+      readOnlyHint: true,
+      idempotent: true,
+      idempotentHint: true,
+      destructive: false,
+      destructiveHint: false,
+      openWorld: true,
+      openWorldHint: true,
+      audience: ['user', 'assistant']
     }
   },
   {
@@ -56,6 +110,72 @@ const TOOLS = [
           description: 'Safety buffer percentage (default 8 = 8%).'
         }
       }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['amountToPay', 'collateralTotal', 'feeAmount', 'yieldDepositAmount', 'totalRequiredAmount', 'selectedProtocol', 'estimatedAPY', 'estimatedRecoveryDays'],
+      properties: {
+        amountToPay: {
+          type: 'string',
+          description: 'USDC amount delivered to recipient'
+        },
+        collateralTotal: {
+          type: 'string',
+          description: 'Base collateral plus safety buffer in USDC'
+        },
+        feeAmount: {
+          type: 'string',
+          description: '0.5% developer fee in USDC (min 0.1, max 50)'
+        },
+        yieldDepositAmount: {
+          type: 'string',
+          description: 'USDC deposited into yield protocol to generate returns'
+        },
+        totalRequiredAmount: {
+          type: 'string',
+          description: 'Total USDC needed upfront (payment + fee + yield deposit)'
+        },
+        collateralMultiplier: {
+          type: 'number',
+          description: 'Collateral multiplier used (e.g. 20)'
+        },
+        bufferPercentage: {
+          type: 'number',
+          description: 'Safety buffer percentage applied (e.g. 8)'
+        },
+        selectedProtocol: {
+          type: 'string',
+          enum: ['aave', 'morpho'],
+          description: 'Yield protocol selected for capital recovery'
+        },
+        estimatedAPY: {
+          type: 'number',
+          description: 'Active APY rate for the chosen protocol'
+        },
+        estimatedRecoveryDays: {
+          type: 'number',
+          description: 'Estimated days until earned yield equals payment + fee'
+        },
+        rates: {
+          type: 'object',
+          description: 'Live APY comparison across protocols',
+          properties: {
+            aave: { type: 'number', description: 'Aave V3 APY' },
+            morpho: { type: 'number', description: 'Morpho APY' }
+          }
+        }
+      }
+    },
+    annotations: {
+      readOnly: true,
+      readOnlyHint: true,
+      idempotent: true,
+      idempotentHint: true,
+      destructive: false,
+      destructiveHint: false,
+      openWorld: false,
+      openWorldHint: false,
+      audience: ['user', 'assistant']
     }
   },
   {
@@ -91,6 +211,80 @@ const TOOLS = [
           description: 'Safety buffer percentage (defaults to 8).'
         }
       }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['success', 'chainId', 'summary', 'transactions', 'batchCalls'],
+      properties: {
+        success: {
+          type: 'boolean',
+          description: 'True if transaction generation succeeded'
+        },
+        chainId: {
+          type: 'number',
+          description: 'Target EVM Chain ID (8453 for Base)'
+        },
+        summary: {
+          type: 'object',
+          description: 'Detailed financial summary of the zero-cost payment plan',
+          properties: {
+            amountToPay: { type: 'string', description: 'USDC paid to recipient' },
+            collateralTotal: { type: 'string', description: 'Total locked collateral in USDC' },
+            feeAmount: { type: 'string', description: 'Developer fee in USDC' },
+            yieldDepositAmount: { type: 'string', description: 'Deposit into yield vault in USDC' },
+            totalRequiredAmount: { type: 'string', description: 'Total capital required upfront in USDC' },
+            collateralMultiplier: { type: 'number', description: 'Multiplier used' },
+            bufferPercentage: { type: 'number', description: 'Buffer percentage used' },
+            protocol: { type: 'string', description: 'Selected yield protocol' },
+            poolAddress: { type: 'string', description: 'Aave V3 Pool or Morpho Vault contract address' },
+            estimatedAPY: { type: 'number', description: 'Active APY rate' },
+            estimatedRecoveryDays: { type: 'number', description: 'Days to 100% principal + fee recovery' },
+            sender: { type: 'string', description: 'Payer address' },
+            recipient: { type: 'string', description: 'Recipient address' },
+            developer: { type: 'string', description: 'Developer fee recipient address' }
+          }
+        },
+        transactions: {
+          type: 'array',
+          description: 'Ordered array of 4 sequential EVM transactions for standard wallets',
+          items: {
+            type: 'object',
+            required: ['step', 'name', 'to', 'data', 'value', 'description'],
+            properties: {
+              step: { type: 'number', description: 'Execution order index (1-4)' },
+              name: { type: 'string', description: 'Action name (e.g. DEVELOPER_FEE, RECIPIENT_PAYMENT, APPROVE_POOL, SUPPLY_COLLATERAL)' },
+              to: { type: 'string', description: 'Target contract address (USDC or Pool)' },
+              data: { type: 'string', description: 'Hex-encoded calldata (0x...)' },
+              value: { type: 'string', description: 'Native ETH value (always 0x0)' },
+              description: { type: 'string', description: 'Human-readable explanation of transaction step' }
+            }
+          }
+        },
+        batchCalls: {
+          type: 'array',
+          description: 'EIP-5792 atomic batch calls array for Smart Accounts and Agentic Wallets',
+          items: {
+            type: 'object',
+            required: ['to', 'data', 'value'],
+            properties: {
+              to: { type: 'string', description: 'Target contract address' },
+              data: { type: 'string', description: 'Hex-encoded calldata' },
+              value: { type: 'string', description: 'Native ETH value (0x0)' }
+            }
+          }
+        }
+      }
+    },
+    annotations: {
+      readOnly: false,
+      readOnlyHint: false,
+      idempotent: true,
+      idempotentHint: true,
+      destructive: false,
+      destructiveHint: false,
+      openWorld: false,
+      openWorldHint: false,
+      audience: ['user', 'assistant']
     }
   }
 ];
@@ -182,7 +376,10 @@ async function handleRequest(request) {
           },
           serverInfo: {
             name: 'selfpaid-mcp',
-            version: '2.1.2'
+            version: '2.1.2',
+            description: 'Model Context Protocol (MCP) server for SelfPaid - Autonomous Zero-Cost DeFi Payments on Base Mainnet',
+            iconUrl: 'https://selfpaid.cryptofolio.it/icon.png',
+            homepage: 'https://github.com/altoninelli/selfpaid-mcp'
           }
         }
       };
