@@ -43,7 +43,7 @@ Add this to your `claude_desktop_config.json`:
   "mcpServers": {
     "selfpaid": {
       "command": "npx",
-      "args": ["-y", "@altoninelli/selfpaid-mcp"]
+      "args": ["-y", "selfpaid-mcp"]
     }
   }
 }
@@ -66,13 +66,13 @@ Add this to your `claude_desktop_config.json`:
 Add a new MCP server in settings:
 * **Name**: `selfpaid`
 * **Type**: `command`
-* **Command**: `node bin/mcp-server.js` (or `npx -y @altoninelli/selfpaid-mcp`)
+* **Command**: `npx -y selfpaid-mcp`
 
 ### 3. Smithery.ai
 
 Install via Smithery CLI:
 ```bash
-npx -y @smithery/cli install @altoninelli/selfpaid-mcp --client claude
+npx -y @smithery/cli install @al-toninelli/selfpaid-payments --client claude
 ```
 
 ---

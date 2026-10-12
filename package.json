@@ -10,6 +10,13 @@
   "scripts": {
     "start": "node bin/mcp-server.js"
   },
+  "files": [
+    "bin",
+    "assets",
+    "README.md",
+    "LICENSE",
+    "smithery.yaml"
+  ],
   "keywords": [
     "mcp",
     "model-context-protocol",
