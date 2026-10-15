@@ -1,7 +1,7 @@
 {
   "name": "selfpaid-mcp",
   "version": "2.1.2",
-  "description": "Model Context Protocol (MCP) server for SelfPaid - Autonomous Zero-Cost DeFi Payments on Base Mainnet",
+  "description": "Model Context Protocol (MCP) server for SelfPaidPal - Autonomous Zero-Cost DeFi Payments on Base Mainnet",
   "icon": "https://selfpaid.cryptofolio.it/icon.png",
   "main": "bin/mcp-server.js",
   "bin": {
@@ -43,5 +43,5 @@
   "bugs": {
     "url": "https://github.com/altoninelli/selfpaid-mcp/issues"
   },
-  "homepage": "https://github.com/altoninelli/selfpaid-mcp#readme"
+  "homepage": "https://selfpaid.cryptofolio.it"
 }

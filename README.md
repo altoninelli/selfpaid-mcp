@@ -1,10 +1,10 @@
-# 🌾 SelfPaid MCP Server
+# 🌾 SelfPaidPal MCP Server
 
 [![MCP](https://img.shields.io/badge/MCP-Standard-green.svg)](https://modelcontextprotocol.io)
 [![Base](https://img.shields.io/badge/Base-Mainnet-blue.svg)](https://base.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Model Context Protocol (MCP) server for SelfPaid** — Autonomous, zero-net-cost payments on **Base Mainnet (Chain ID 8453)** powered by automated yield farming on **Aave V3** and **Morpho**.
+**Model Context Protocol (MCP) server for SelfPaidPal** — Autonomous, zero-net-cost payments on **Base Mainnet (Chain ID 8453)** powered by automated yield farming on **Aave V3** and **Morpho**.
 
 This server provides AI agents (Claude, Cursor, Windsurf, OpenClaw) with tools to analyze yield rates, calculate capital recovery timelines, and construct ready-to-sign EVM transactions and atomic **EIP-5792** batch calls.
 
