@@ -376,10 +376,10 @@ async function handleRequest(request) {
           },
           serverInfo: {
             name: 'selfpaid-mcp',
-            version: '2.1.2',
-            description: 'Model Context Protocol (MCP) server for SelfPaid - Autonomous Zero-Cost DeFi Payments on Base Mainnet',
+            version: '2.1.3',
+            description: 'Model Context Protocol (MCP) server for SelfPaidPal - Autonomous Zero-Cost DeFi Payments on Base Mainnet',
             iconUrl: 'https://selfpaid.cryptofolio.it/icon.png',
-            homepage: 'https://github.com/altoninelli/selfpaid-mcp'
+            homepage: 'https://selfpaid.cryptofolio.it'
           }
         }
       };

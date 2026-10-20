@@ -1,5 +1,8 @@
 # 🌾 SelfPaidPal MCP Server
 
+[![smithery badge](https://smithery.ai/badge/al-toninelli/selfpaid-payments)](https://smithery.ai/servers/al-toninelli/selfpaid-payments)
+[![Glama MCP Server](https://glama.ai/mcp/servers/altoninelli/selfpaid-mcp/badges/score.svg)](https://glama.ai/mcp/servers/altoninelli/selfpaid-mcp)
+[![npm version](https://img.shields.io/npm/v/selfpaid-mcp.svg)](https://www.npmjs.com/package/selfpaid-mcp)
 [![MCP](https://img.shields.io/badge/MCP-Standard-green.svg)](https://modelcontextprotocol.io)
 [![Base](https://img.shields.io/badge/Base-Mainnet-blue.svg)](https://base.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

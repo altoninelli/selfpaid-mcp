@@ -1,6 +1,7 @@
 {
   "name": "selfpaid-mcp",
-  "version": "2.1.2",
+  "mcpName": "io.github.altoninelli/selfpaid",
+  "version": "2.1.3",
   "description": "Model Context Protocol (MCP) server for SelfPaidPal - Autonomous Zero-Cost DeFi Payments on Base Mainnet",
   "icon": "https://selfpaid.cryptofolio.it/icon.png",
   "main": "bin/mcp-server.js",
@@ -13,9 +14,13 @@
   "files": [
     "bin",
     "assets",
+    "examples",
     "README.md",
     "LICENSE",
-    "smithery.yaml"
+    "smithery.yaml",
+    "glama.json",
+    "server.json",
+    "Dockerfile"
   ],
   "keywords": [
     "mcp",
