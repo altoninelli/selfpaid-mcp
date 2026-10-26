@@ -1,6 +1,6 @@
 # 🌾 SelfPaidPal MCP Server
 
-[![smithery badge](https://smithery.ai/badge/al-toninelli/selfpaid-payments)](https://smithery.ai/servers/al-toninelli/selfpaid-payments)
+[![LightNow capabilities](https://lightnow.ai/badge/io.github.altoninelli/selfpaid)](https://lightnow.ai/servers/io.github.altoninelli/selfpaid)
 [![Glama MCP Server](https://glama.ai/mcp/servers/altoninelli/selfpaid-mcp/badges/score.svg)](https://glama.ai/mcp/servers/altoninelli/selfpaid-mcp)
 [![npm version](https://img.shields.io/npm/v/selfpaid-mcp.svg)](https://www.npmjs.com/package/selfpaid-mcp)
 [![MCP](https://img.shields.io/badge/MCP-Standard-green.svg)](https://modelcontextprotocol.io)
